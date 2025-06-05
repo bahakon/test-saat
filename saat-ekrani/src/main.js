@@ -1,24 +1,28 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import './style.css';
+
+const userName = prompt("İsminizi girin:");
 
 document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+  <div class="container">
+    <div class="greeting">Merhaba, <strong>${userName}</strong>! Hoş geldin!</div>
+    <div class="clock" id="clock"></div>
+    <div class="footer" id="footer"></div>
   </div>
-`
+`;
 
-setupCounter(document.querySelector('#counter'))
+const clockEl = document.getElementById("clock");
+const footerEl = document.getElementById("footer");
+
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString('tr-TR');
+  const weekday = now.toLocaleDateString('tr-TR', { weekday: 'long' });
+  const date = now.toLocaleDateString('tr-TR');
+
+  clockEl.innerHTML = `${time} ${weekday}`;
+  footerEl.innerHTML = `${date} tarihinde KODLUYORUZ Frontend Web Development Patikası'nın Javascript bölümü 1. ödevindesiniz.`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
