@@ -1,17 +1,9 @@
-import './style.css';
-
 const userName = prompt("İsminizi girin:");
-
-document.querySelector('#app').innerHTML = `
-  <div class="container">
-    <div class="greeting">Merhaba, <strong>${userName}</strong>! Hoş geldin!</div>
-    <div class="clock" id="clock"></div>
-    <div class="footer" id="footer"></div>
-  </div>
-`;
-
+const greetingEl = document.getElementById("greeting");
 const clockEl = document.getElementById("clock");
 const footerEl = document.getElementById("footer");
+
+greetingEl.innerHTML = `Merhaba, <strong>${userName}</strong>! Hoş geldin!`;
 
 function updateClock() {
   const now = new Date();
@@ -25,4 +17,3 @@ function updateClock() {
 
 setInterval(updateClock, 1000);
 updateClock();
-
